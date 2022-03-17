@@ -11,6 +11,7 @@ def load_user(user_id):
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key = True)
+    public_id = db.Column(db.String(255), unique=True)
     username = db.Column(db.String(255))
     pass_secure = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
