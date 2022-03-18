@@ -1,25 +1,26 @@
-from flask import Flask
+from email.mime import base
+from flask import Flask,request,jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 from flask_restful import Resource, Api
+import os
+
+import marshmallow
 
 app = Flask(__name__)
 
 api = Api(app)
 
-#!/usr/bin/env python
-# encoding: utf-8
-import json
-from flask import Flask, request, jsonify
 
 
 app = Flask(__name__)
-app.config['PSQLALCHEMY_SETTINGS'] = {
-    'db': 'your_database',
-    'host': 'localhost',
-    'port': 27017
-}
-db = SQLAlchemy()
-db.init_app(app)
+basedir= os.path.abspath(os.path.dirname(__file__))
+app.config["SQLALCHEMY_DATABASE_URI"] = 'potgresql:///'+os.path.join(basedir,'db.postgresql')
+app.config['SQLALCHEMY_TRACKMODIFICATIONS']=False
+
+db = SQLAlchemy(app)
+
+ma = marshmallow(app)
 
 class User(db.Model):
     __tablename__ = 'users'
