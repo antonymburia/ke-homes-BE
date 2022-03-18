@@ -2,10 +2,9 @@ from flask import Flask, jsonify, request, make_response
 from models import db, User,House
 from flask_script import Manager,Server
 from flask_migrate import Migrate, MigrateCommand
-import uuid
+
 from werkzeug.security import generate_password_hash, check_password_hash
-import jwt
-import datetime
+
 from functools import wraps
 
 app = Flask(__name__)
