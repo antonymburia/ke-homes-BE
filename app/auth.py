@@ -1,6 +1,6 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
 from hashlib import md5
-import MySQLdb
+from models import db
 
 app = Flask(__name__)
 
@@ -8,7 +8,7 @@ app = Flask(__name__)
 #   DATABASE CONFIG   #
 #######################
 
-db = MySQLdb.connect(host="localhost", user="root", passwd="", db="test")
+db = login.connect(host="localhost", user="root", passwd="", db="test")
 cur = db.cursor()
 
 @app.route('/')
